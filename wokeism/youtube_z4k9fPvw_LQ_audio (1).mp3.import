@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ctu0ifq57h3pp"
+path="res://.godot/imported/youtube_z4k9fPvw_LQ_audio (1).mp3-632a198cc6dfb78167444ff03d5fddb7.mp3str"
+
+[deps]
+
+source_file="res://youtube_z4k9fPvw_LQ_audio (1).mp3"
+dest_files=["res://.godot/imported/youtube_z4k9fPvw_LQ_audio (1).mp3-632a198cc6dfb78167444ff03d5fddb7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
