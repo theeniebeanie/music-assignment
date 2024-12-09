@@ -1,40 +1,119 @@
-[gd_scene load_steps=7 format=3 uid="uid://cv86qqud2rdqn"]
+[gd_scene load_steps=16 format=3 uid="uid://cv86qqud2rdqn"]
 
 [ext_resource type="AudioStream" uid="uid://ctu0ifq57h3pp" path="res://youtube_z4k9fPvw_LQ_audio (1).mp3" id="1_4mjqg"]
-[ext_resource type="Script" path="res://node_2d.gd" id="1_6abay"]
-[ext_resource type="Script" path="res://control.gd" id="1_ghpak"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="4_mse76"]
-[ext_resource type="Script" path="res://h_sliderr.gd" id="5_vqac4"]
-[ext_resource type="Script" path="res://buttonn.gd" id="6_22tdq"]
+[ext_resource type="Script" path="res://Node2d.gd" id="1_8ymyv"]
+[ext_resource type="Texture2D" uid="uid://bx38m38cpvt4q" path="res://song.png" id="2_jf8pm"]
+[ext_resource type="Texture2D" uid="uid://btp4fjvksyek4" path="res://song2.png" id="3_chede"]
+[ext_resource type="PackedScene" uid="uid://do0cxvftwviir" path="res://Volumeslider.tscn" id="4_3rvyr"]
+[ext_resource type="Texture2D" uid="uid://bg2geau56w2tm" path="res://clap.png" id="5_vxkjg"]
+[ext_resource type="Texture2D" uid="uid://dwx5m1asjdvjb" path="res://clap2.png" id="6_ev548"]
+[ext_resource type="AudioStream" uid="uid://6fhi1g8lr7x" path="res://cheer.mp3" id="6_lukk4"]
+[ext_resource type="AudioStream" uid="uid://c6m52p45oqjn5" path="res://scary.mp3" id="7_4k5ti"]
+[ext_resource type="AudioStream" uid="uid://835pq6v7oorv" path="res://funny.mp3" id="8_tg822"]
+[ext_resource type="Texture2D" uid="uid://b5dkxqu4skm0f" path="res://scary.png" id="9_k7vmx"]
+[ext_resource type="Texture2D" uid="uid://d0i77tqsmo50u" path="res://scary2.png" id="10_p2k8i"]
+[ext_resource type="Texture2D" uid="uid://dbbqvl85liu6i" path="res://funny.png" id="12_x8mjd"]
+[ext_resource type="Texture2D" uid="uid://csukjxa6k366a" path="res://funny2.png" id="13_i5e2f"]
+
+[sub_resource type="GDScript" id="GDScript_aa424"]
+script/source = "extends AudioStreamPlayer2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_6abay")
+script = ExtResource("1_8ymyv")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("1_ghpak")
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0.465065, 0.466877, 1)
+polygon = PackedVector2Array(-237, -136, 1368, -144, 1371, 734, -242, 729)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control"]
-position = Vector2(64, 36)
+[node name="TextureButton1" type="TextureButton" parent="."]
+offset_left = 149.0
+offset_top = 59.0
+offset_right = 349.0
+offset_bottom = 187.0
+texture_normal = ExtResource("2_jf8pm")
+texture_pressed = ExtResource("3_chede")
+
+[node name="AudioStreamPlayer2D1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_4mjqg")
-script = ExtResource("4_mse76")
+script = SubResource("GDScript_aa424")
 
-[node name="HSlider" type="HSlider" parent="Control"]
-layout_mode = 0
-offset_left = 83.0
-offset_top = 201.0
-offset_right = 590.0
-offset_bottom = 225.0
-script = ExtResource("5_vqac4")
+[node name="HSlider" parent="." instance=ExtResource("4_3rvyr")]
+offset_left = 121.0
+offset_top = 208.0
+offset_right = 383.0
+offset_bottom = 261.0
+bus_name = "Master"
 
-[node name="Button" type="Button" parent="Control"]
-layout_mode = 0
-offset_left = 291.0
-offset_top = 162.0
-offset_right = 382.0
-offset_bottom = 201.0
-text = "the button"
-script = ExtResource("6_22tdq")
+[node name="TextureButton2" type="TextureButton" parent="."]
+offset_left = 737.0
+offset_top = 75.0
+offset_right = 937.0
+offset_bottom = 203.0
+texture_normal = ExtResource("6_ev548")
+texture_pressed = ExtResource("5_vxkjg")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_lukk4")
+bus = &"Cheer"
+
+[node name="HSlider2" parent="." instance=ExtResource("4_3rvyr")]
+offset_left = 724.0
+offset_top = 219.0
+offset_right = 986.0
+offset_bottom = 272.0
+bus_name = "Cheer"
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+offset_left = 162.0
+offset_top = 392.0
+offset_right = 362.0
+offset_bottom = 520.0
+texture_normal = ExtResource("9_k7vmx")
+texture_pressed = ExtResource("10_p2k8i")
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_4k5ti")
+bus = &"Scary"
+
+[node name="HSlider3" parent="." instance=ExtResource("4_3rvyr")]
+offset_left = 135.0
+offset_top = 523.0
+offset_right = 397.0
+offset_bottom = 576.0
+bus_name = "Scary"
+
+[node name="TextureButton4" type="TextureButton" parent="."]
+offset_left = 781.0
+offset_top = 387.0
+offset_right = 981.0
+offset_bottom = 515.0
+texture_normal = ExtResource("12_x8mjd")
+texture_pressed = ExtResource("13_i5e2f")
+
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_tg822")
+bus = &"Laugh"
+
+[node name="HSlider4" parent="." instance=ExtResource("4_3rvyr")]
+offset_left = 769.0
+offset_top = 531.0
+offset_right = 1031.0
+offset_bottom = 584.0
+bus_name = "Laugh"
+
+[connection signal="pressed" from="TextureButton1" to="." method="_on_texture_button1_pressed"]
+[connection signal="finished" from="AudioStreamPlayer2D1" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="pressed" from="TextureButton2" to="." method="_on_texture_button2_pressed"]
+[connection signal="pressed" from="TextureButton3" to="." method="_on_texture_button3_pressed"]
+[connection signal="pressed" from="TextureButton4" to="." method="_on_texture_button4_pressed"]
